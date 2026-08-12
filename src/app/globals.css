@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0a171e;
+  --surface: #10222d;
+  --surface-2: #15303d;
+  --fg: #eaf1f4;
+  --muted: #83999f;
+  --line: rgba(234, 241, 244, 0.1);
+  --line-2: rgba(234, 241, 244, 0.16);
+  --signal: #4da3ff;
+  --gold: #f5c451;
+  --miss: #587883;
+  --radius: 14px;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-signal: var(--signal);
+  --color-gold: var(--gold);
+  --color-miss: var(--miss);
+  --font-display: var(--font-bricolage), sans-serif;
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), monospace;
+  --radius-panel: var(--radius);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--signal);
+  color: #04121c;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(77, 163, 255, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(77, 163, 255, 0);
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.animate-caret {
+  animation: blink-caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
