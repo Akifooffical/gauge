@@ -12,6 +12,17 @@
   --gold: #f5c451;
   --miss: #587883;
   --radius: 14px;
+
+  /* Gauge hero — koyu-sinematik 3D tema */
+  --hero-bg: #07070c;
+  --hero-surface: #0e0e16;
+  --hero-text: #edecf2;
+  --hero-muted: #8e8ca3;
+  --hero-line: rgba(237, 236, 242, 0.1);
+  --hero-line-2: rgba(237, 236, 242, 0.18);
+  --hero-accent: #8b6cff;
+  --hero-accent-2: #33e0d6;
+  --hero-accent-3: #ff5c8a;
 }
 
 @theme inline {
@@ -29,6 +40,18 @@
   --font-sans: var(--font-plex-sans), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), monospace;
   --radius-panel: var(--radius);
+
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-surface: var(--hero-surface);
+  --color-hero-text: var(--hero-text);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-line: var(--hero-line);
+  --color-hero-line-2: var(--hero-line-2);
+  --color-hero-accent: var(--hero-accent);
+  --color-hero-accent-2: var(--hero-accent-2);
+  --color-hero-accent-3: var(--hero-accent-3);
+  --font-hero-display: var(--font-space-grotesk), sans-serif;
+  --font-hero-body: var(--font-inter), system-ui, sans-serif;
 }
 
 html {
@@ -68,6 +91,69 @@ body {
 
 .animate-caret {
   animation: blink-caret 1s steps(1) infinite;
+}
+
+/* Gauge hero animasyonları */
+@keyframes gauge-reveal {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes gauge-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gauge-blink-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes gauge-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gauge-scan {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.gauge-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.gauge-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: gauge-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.gauge-fade-in {
+  opacity: 0;
+  animation: gauge-fade 1s ease forwards;
+}
+
+.gauge-blink-dot {
+  animation: gauge-blink-dot 2s ease-in-out infinite;
+}
+
+.gauge-spin {
+  animation: gauge-spin 3.4s linear infinite;
+}
+
+.gauge-scanline {
+  animation: gauge-scan 7s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

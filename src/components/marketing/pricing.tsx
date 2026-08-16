@@ -86,7 +86,7 @@ export function Pricing() {
                 ))}
               </ul>
               <ButtonLink
-                href="#tara"
+                href="/onboarding"
                 variant={plan.popular ? "primary" : "ghost"}
                 className="mt-auto justify-center"
               >
