@@ -9,18 +9,15 @@ import { Footer } from "@/components/marketing/footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="relative z-10">
       <GaugeHero />
-      {/* GaugeHero'nun sabit (fixed) 3D arka planının üzerinde opak şekilde durması için */}
-      <div className="relative z-10 bg-ink">
-        <Problem />
-        <HowItWorks />
-        <Sectors />
-        <CompetitorRadarTeaser />
-        <Pricing />
-        <FinalCta />
-        <Footer />
-      </div>
-    </>
+      <Problem />
+      <HowItWorks />
+      <Sectors />
+      <CompetitorRadarTeaser />
+      <Pricing />
+      <FinalCta />
+      <Footer />
+    </div>
   );
 }

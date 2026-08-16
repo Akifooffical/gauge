@@ -100,6 +100,8 @@ function GaugeScene({
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const targetMouse = useRef({ x: 0, y: 0 });
+  const targetIntensity = useRef(intensity);
+  const targetPaletteShift = useRef(paletteShift);
 
   const geometry = useMemo(() => {
     const geo = new THREE.BufferGeometry();
@@ -122,13 +124,11 @@ function GaugeScene({
   );
 
   useEffect(() => {
-    const material = materialRef.current;
-    if (material) material.uniforms.uIntensity.value = intensity;
+    targetIntensity.current = intensity;
   }, [intensity]);
 
   useEffect(() => {
-    const material = materialRef.current;
-    if (material) material.uniforms.uPaletteShift.value = paletteShift;
+    targetPaletteShift.current = paletteShift;
   }, [paletteShift]);
 
   useEffect(() => {
@@ -145,6 +145,12 @@ function GaugeScene({
     if (!material) return;
     const dpr = gl.getPixelRatio();
     material.uniforms.uResolution.value.set(size.width * dpr, size.height * dpr);
+
+    // sayfa/rota değişince hedef palet & yoğunluğa yumuşakça geçiş yap
+    material.uniforms.uIntensity.value +=
+      (targetIntensity.current - material.uniforms.uIntensity.value) * 0.03;
+    material.uniforms.uPaletteShift.value +=
+      (targetPaletteShift.current - material.uniforms.uPaletteShift.value) * 0.03;
 
     if (reduceMotion) {
       material.uniforms.uTime.value = 8.0;

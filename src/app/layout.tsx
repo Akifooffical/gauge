@@ -1,24 +1,7 @@
 import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  IBM_Plex_Mono,
-  IBM_Plex_Sans,
-  Inter,
-  Space_Grotesk,
-} from "next/font/google";
+import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-  weight: ["500", "700", "800"],
-});
-
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
+import { SiteBackground } from "@/components/SiteBackground";
 
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
@@ -48,9 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="tr"
-      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable} ${spaceGrotesk.variable} ${inter.variable}`}
+      className={`${plexMono.variable} ${spaceGrotesk.variable} ${inter.variable}`}
     >
       <body className="min-h-screen bg-ink font-sans text-fg antialiased">
+        <SiteBackground />
         {children}
       </body>
     </html>

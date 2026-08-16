@@ -16,34 +16,35 @@ export function TrendChart() {
       <LineChart data={trend} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
         <XAxis
           dataKey="week"
-          stroke="#83999F"
+          stroke="var(--muted)"
           fontSize={12}
           tickLine={false}
           axisLine={false}
         />
         <YAxis
           domain={[0, 100]}
-          stroke="#83999F"
+          stroke="var(--muted)"
           fontSize={12}
           tickLine={false}
           axisLine={false}
         />
         <Tooltip
           contentStyle={{
-            background: "#15303D",
-            border: "1px solid rgba(234,241,244,0.16)",
+            background: "var(--surface-2)",
+            border: "1px solid var(--line-2)",
             borderRadius: 10,
-            color: "#EAF1F4",
+            color: "var(--fg)",
             fontSize: 13,
+            backdropFilter: "blur(12px)",
           }}
-          labelStyle={{ color: "#83999F" }}
+          labelStyle={{ color: "var(--muted)" }}
         />
         <Line
           type="monotone"
           dataKey="score"
-          stroke="#4DA3FF"
+          stroke="var(--signal)"
           strokeWidth={2.5}
-          dot={{ r: 3, fill: "#4DA3FF" }}
+          dot={{ r: 3, fill: "var(--signal)" }}
           activeDot={{ r: 5 }}
         />
       </LineChart>

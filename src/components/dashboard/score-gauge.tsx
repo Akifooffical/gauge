@@ -29,8 +29,8 @@ export function ScoreGauge({ score, label }: { score: number; label: string }) {
         />
         <defs>
           <linearGradient id="gauge-gradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#4DA3FF" />
-            <stop offset="100%" stopColor="#F5C451" />
+            <stop offset="0%" stopColor="#8B6CFF" />
+            <stop offset="100%" stopColor="#33E0D6" />
           </linearGradient>
         </defs>
       </svg>

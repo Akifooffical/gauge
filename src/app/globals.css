@@ -1,28 +1,35 @@
 @import "tailwindcss";
 
+/*
+ * Site genelinde tek tema: koyu-sinematik "Gauge" paleti.
+ * ink/surface/signal/gold isimleri korunuyor (tüm bileşenler bunları kullanıyor)
+ * ama değerleri artık Gauge-3D-Background-Prompt.md'deki prizmatik palete işaret
+ * ediyor — signal = birincil vurgu (menekşe), gold = canlı/veri vurgusu (camgöbeği).
+ * hero-* token'ları geriye dönük uyumluluk için aynı değerlere alias'lanır.
+ */
 :root {
-  --ink: #0a171e;
-  --surface: #10222d;
-  --surface-2: #15303d;
-  --fg: #eaf1f4;
-  --muted: #83999f;
-  --line: rgba(234, 241, 244, 0.1);
-  --line-2: rgba(234, 241, 244, 0.16);
-  --signal: #4da3ff;
-  --gold: #f5c451;
+  --ink: #07070c;
+  --surface: rgba(14, 14, 22, 0.6);
+  --surface-2: rgba(26, 20, 42, 0.72);
+  --fg: #edecf2;
+  --muted: #8e8ca3;
+  --line: rgba(237, 236, 242, 0.1);
+  --line-2: rgba(237, 236, 242, 0.18);
+  --signal: #8b6cff;
+  --gold: #33e0d6;
   --miss: #587883;
+  --accent-3: #ff5c8a;
   --radius: 14px;
 
-  /* Gauge hero — koyu-sinematik 3D tema */
-  --hero-bg: #07070c;
-  --hero-surface: #0e0e16;
-  --hero-text: #edecf2;
-  --hero-muted: #8e8ca3;
-  --hero-line: rgba(237, 236, 242, 0.1);
-  --hero-line-2: rgba(237, 236, 242, 0.18);
-  --hero-accent: #8b6cff;
-  --hero-accent-2: #33e0d6;
-  --hero-accent-3: #ff5c8a;
+  --hero-bg: var(--ink);
+  --hero-surface: var(--surface);
+  --hero-text: var(--fg);
+  --hero-muted: var(--muted);
+  --hero-line: var(--line);
+  --hero-line-2: var(--line-2);
+  --hero-accent: var(--signal);
+  --hero-accent-2: var(--gold);
+  --hero-accent-3: var(--accent-3);
 }
 
 @theme inline {
@@ -36,8 +43,9 @@
   --color-signal: var(--signal);
   --color-gold: var(--gold);
   --color-miss: var(--miss);
-  --font-display: var(--font-bricolage), sans-serif;
-  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --color-accent-3: var(--accent-3);
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), monospace;
   --radius-panel: var(--radius);
 
@@ -72,10 +80,10 @@ body {
 @keyframes pulse-dot {
   0%,
   100% {
-    box-shadow: 0 0 0 4px rgba(77, 163, 255, 0.18);
+    box-shadow: 0 0 0 4px rgba(139, 108, 255, 0.18);
   }
   50% {
-    box-shadow: 0 0 0 9px rgba(77, 163, 255, 0);
+    box-shadow: 0 0 0 9px rgba(139, 108, 255, 0);
   }
 }
 

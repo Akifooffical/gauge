@@ -16,24 +16,25 @@ export function ChannelBarChart() {
           dataKey="channel"
           type="category"
           width={130}
-          stroke="#83999F"
+          stroke="var(--muted)"
           fontSize={12.5}
           tickLine={false}
           axisLine={false}
         />
         <Tooltip
-          cursor={{ fill: "rgba(234,241,244,0.04)" }}
+          cursor={{ fill: "rgba(237,236,242,0.04)" }}
           contentStyle={{
-            background: "#15303D",
-            border: "1px solid rgba(234,241,244,0.16)",
+            background: "var(--surface-2)",
+            border: "1px solid var(--line-2)",
             borderRadius: 10,
-            color: "#EAF1F4",
+            color: "var(--fg)",
             fontSize: 13,
+            backdropFilter: "blur(12px)",
           }}
         />
         <Bar dataKey="score" radius={[0, 6, 6, 0]} barSize={16}>
           {channelScores.map((c) => (
-            <Cell key={c.key} fill={c.score >= 80 ? "#F5C451" : "#4DA3FF"} />
+            <Cell key={c.key} fill={c.score >= 80 ? "var(--gold)" : "var(--signal)"} />
           ))}
         </Bar>
       </BarChart>
