@@ -2,9 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import { GaugeBackground } from "@/components/GaugeBackground";
+import { GaugeReelBackground } from "@/components/GaugeReelBackground";
 
-// Her sekme, aynı shader'ın hafifçe farklı bir renk/parlaklık varyasyonunu kullanır —
-// sayfalar arası geçiş "canlı" hissettirir ama tutarlı bir aile olarak kalır.
+// Pazarlama sayfaları (landing, "Neden Gauge") tam boyutta animasyonlu "gauge-reel" arka
+// planını kullanır. Uygulama sayfaları (pano, onboarding, rakip radarı, aksiyon merkezi)
+// kendi gerçek skor/grafik verisini gösterir — reel'in demo sahneleri (skor sayacı, trend
+// çizgisi, kanal çubukları) görsel olarak neredeyse aynı olduğu için burada gerçek veriyle
+// çakışıp "hayalet ikinci pano" görünümü yaratıyor. Bu yüzden uygulama tarafı, aynı ailenin
+// sade ve nötr üyesi olan WebGL shader'da kalır.
 const ROUTE_THEME: Record<string, { paletteShift: number; intensity: number; label: string }> = {
   "/": { paletteShift: 0, intensity: 1, label: "01 — Realtime" },
   "/dashboard": { paletteShift: 0.16, intensity: 0.85, label: "02 — Pano" },
@@ -13,6 +18,8 @@ const ROUTE_THEME: Record<string, { paletteShift: number; intensity: number; lab
   "/actions": { paletteShift: 0.68, intensity: 0.85, label: "05 — Aksiyon Merkezi" },
   "/neden-gauge": { paletteShift: 0.84, intensity: 0.9, label: "06 — Neden Gauge" },
 };
+
+const REEL_ROUTES = new Set(["/", "/neden-gauge"]);
 
 function themeFor(pathname: string) {
   if (ROUTE_THEME[pathname]) return ROUTE_THEME[pathname];
@@ -24,18 +31,28 @@ function themeFor(pathname: string) {
 
 export function SiteBackground() {
   const pathname = usePathname();
-  const theme = themeFor(pathname ?? "/");
+  const path = pathname ?? "/";
+  const theme = themeFor(path);
+  const useReel = REEL_ROUTES.has(path);
 
   return (
     <>
-      <GaugeBackground paletteShift={theme.paletteShift} intensity={theme.intensity} />
+      {useReel ? (
+        <GaugeReelBackground />
+      ) : (
+        <GaugeBackground paletteShift={theme.paletteShift} intensity={theme.intensity} />
+      )}
 
-      {/* okunabilirlik için ek vinyet katmanı */}
+      {/*
+        okunabilirlik için vinyet katmanı — reel'in kendi sahne içeriği (kelimeler, şekiller)
+        zaman zaman öne çıktığında gerçek sayfa metniyle çakışmasın diye merkez de dahil
+        hiçbir nokta tam saydam bırakılmıyor.
+      */}
       <div
         className="pointer-events-none fixed inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(120% 90% at 50% 40%, transparent 40%, rgba(7,7,12,.55) 78%, rgba(7,7,12,.9) 100%)",
+            "radial-gradient(120% 90% at 50% 40%, rgba(7,7,12,.38) 0%, rgba(7,7,12,.6) 55%, rgba(7,7,12,.92) 100%)",
         }}
         aria-hidden="true"
       />
