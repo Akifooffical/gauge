@@ -11,6 +11,7 @@ const ROUTE_THEME: Record<string, { paletteShift: number; intensity: number; lab
   "/onboarding": { paletteShift: 0.32, intensity: 0.9, label: "03 — Onboarding" },
   "/competitors": { paletteShift: 0.5, intensity: 0.85, label: "04 — Rakip Radarı" },
   "/actions": { paletteShift: 0.68, intensity: 0.85, label: "05 — Aksiyon Merkezi" },
+  "/neden-gauge": { paletteShift: 0.84, intensity: 0.9, label: "06 — Neden Gauge" },
 };
 
 function themeFor(pathname: string) {

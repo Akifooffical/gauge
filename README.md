@@ -19,11 +19,21 @@ npm run dev
 
 ## Sayfalar
 
-- `/` — pazarlama / landing sayfası
+- `/` — pazarlama / landing sayfası (ücretsiz AI görünürlük taraması dahil, bkz. "Ücretsiz
+  tarama" bölümü)
+- `/neden-gauge` — Gauge'u elle takip ve geleneksel SEO ajanslarıyla kıyaslayan konumlandırma
+  sayfası
 - `/onboarding` — işletme, bölge, kategori, rakip tanımlama sihirbazı (mock, kaydetmez)
 - `/dashboard` — görünürlük skoru, trend, kanal kırılımı, ısı haritası (mock veri)
 - `/competitors` — rakip karşılaştırması ve kaynak haritası (mock veri)
 - `/actions` — aksiyon merkezi / fix engine önerileri (mock veri)
+
+## Ücretsiz tarama
+
+`/api/free-scan`, işletme adı + şehir + kategori girildiğinde web-bağlantılı (grounded) bir
+modele (Perplexity Sonar) gerçek sorular sorup 0-100 görünürlük skoru döndüren, gerçekten API
+çağıran bir prototiptir — bkz. `src/lib/free-scan/`. Çalıştırmak için `.env.local` içine
+`PERPLEXITY_API_KEY` ekleyin (örnek anahtarlar için o dosyadaki yorumlara bakın).
 
 ## Yığın
 
@@ -46,3 +56,12 @@ Bu MVP'yi üretime taşımak için:
 
 Mock veri `src/lib/mock-data.ts` dosyasında merkezi olarak tutulur; gerçek veri katmanına
 geçerken bu dosyanın yerini veritabanı sorguları alacak şekilde tasarlanmıştır.
+
+## Dokümanlar
+
+- [`docs/geo-grid-lokasyon-analizi.md`](docs/geo-grid-lokasyon-analizi.md) — harita/geo-grid
+  lokasyon analizi özelliğinin teknik tasarımı (veri modeli, grid algoritması, sorgu stratejisi,
+  rollout fazları).
+- [`docs/maliyet-modeli.xlsx`](docs/maliyet-modeli.xlsx) — kendi abonelik/tarama sayılarını
+  girip brüt marj, CAC, LTV ve başabaş noktasını gördüğün Excel maliyet modeli (3 sekme:
+  Girdiler, Hesaplama, Özet — sarı hücreler düzenlenebilir).

@@ -1,13 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
-const navLinks = [
-  { href: "#nasil", label: "Ürün" },
-  { href: "#rakip", label: "Metrikler" },
-  { href: "#fiyat", label: "Fiyatlar" },
-  { href: "https://github.com/Akifooffical/gauge", label: "Dokümanlar", external: true },
-];
+import { SiteHeader } from "@/components/marketing/site-header";
 
 const words = ["Ölç.", "Gör.", "Öne geç."];
 
@@ -20,50 +14,7 @@ const metrics = [
 export function GaugeHero() {
   return (
     <div className="relative z-10">
-      <header className="fixed inset-x-0 top-0 z-20 flex justify-center p-5">
-        <nav className="flex w-[min(1100px,94%)] items-center justify-between rounded-2xl border border-line-2 bg-surface py-3 pl-[22px] pr-3 backdrop-blur-2xl">
-          <Link
-            href="/"
-            className="flex items-center gap-[11px] font-display text-[19px] font-bold tracking-[-0.01em]"
-          >
-            <span className="relative inline-block h-4 w-4">
-              <span className="gauge-spin absolute inset-0 rounded-full border-2 border-signal border-t-transparent" />
-              <span
-                className="absolute inset-[5px] rounded-full bg-gold"
-                style={{ boxShadow: "0 0 12px var(--gold)" }}
-              />
-            </span>
-            Gauge
-          </Link>
-
-          <div className="hidden gap-7 text-sm text-muted md:flex">
-            {navLinks.map((l) =>
-              l.external ? (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-fg"
-                >
-                  {l.label}
-                </a>
-              ) : (
-                <a key={l.label} href={l.href} className="transition-colors hover:text-fg">
-                  {l.label}
-                </a>
-              )
-            )}
-          </div>
-
-          <Link
-            href="/onboarding"
-            className="inline-flex items-center gap-2 rounded-[11px] bg-fg px-[18px] py-2.5 text-sm font-semibold text-[#0a0a12] transition-transform hover:-translate-y-px"
-          >
-            Ücretsiz başla →
-          </Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="relative flex min-h-screen flex-col justify-center px-6 pb-20 pt-[120px]">
         <div className="mx-auto w-full max-w-[1200px]">

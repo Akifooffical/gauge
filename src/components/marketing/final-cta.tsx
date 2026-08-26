@@ -3,7 +3,7 @@ import { ScanForm } from "@/components/free-scan/ScanForm";
 
 export function FinalCta() {
   return (
-    <section className="py-24 text-center">
+    <section id="tarama" className="py-24 text-center">
       <Container>
         <div className="font-mono text-xs uppercase tracking-[0.16em] text-signal">
           30 saniye
