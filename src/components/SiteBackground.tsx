@@ -1,67 +1,51 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { GaugeBackground } from "@/components/GaugeBackground";
-import { GaugeReelBackground } from "@/components/GaugeReelBackground";
+import { GaugeSceneBackground } from "@/components/GaugeSceneBackground";
+import type { SceneKey } from "@/components/gauge-scenes";
 
-// Pazarlama sayfaları (landing, "Neden Gauge") tam boyutta animasyonlu "gauge-reel" arka
-// planını kullanır. Uygulama sayfaları (pano, onboarding, rakip radarı, aksiyon merkezi)
-// kendi gerçek skor/grafik verisini gösterir — reel'in demo sahneleri (skor sayacı, trend
-// çizgisi, kanal çubukları) görsel olarak neredeyse aynı olduğu için burada gerçek veriyle
-// çakışıp "hayalet ikinci pano" görünümü yaratıyor. Bu yüzden uygulama tarafı, aynı ailenin
-// sade ve nötr üyesi olan WebGL shader'da kalır.
-const ROUTE_THEME: Record<string, { paletteShift: number; intensity: number; label: string }> = {
-  "/": { paletteShift: 0, intensity: 1, label: "01 — Realtime" },
-  "/dashboard": { paletteShift: 0.16, intensity: 0.85, label: "02 — Pano" },
-  "/onboarding": { paletteShift: 0.32, intensity: 0.9, label: "03 — Onboarding" },
-  "/competitors": { paletteShift: 0.5, intensity: 0.85, label: "04 — Rakip Radarı" },
-  "/actions": { paletteShift: 0.68, intensity: 0.85, label: "05 — Aksiyon Merkezi" },
-  "/neden-gauge": { paletteShift: 0.84, intensity: 0.9, label: "06 — Neden Gauge" },
+// Her rota kendi sahnesini çalıştırır. Handoff'taki tasarım 4 nav sekmesi + 4 app rotası
+// için 6 sahne öngörüyordu ("Fiyatlar"/"Dokümanlar" burada ayrı rota değil, "/" üzerinde
+// hash/dış bağlantı — bkz. site-header.tsx) — bizde 6 gerçek rota var, 6 sahneyle birebir
+// eşleşiyor.
+const ROUTE_SCENE: Record<string, { scene: SceneKey; label: string }> = {
+  "/": { scene: "signalFlow", label: "01 — Sinyal Akışı" },
+  "/neden-gauge": { scene: "geoGridRadar", label: "02 — Geo-Grid Radar" },
+  "/dashboard": { scene: "prismaticDial", label: "03 — Prizmatik Kadran" },
+  "/onboarding": { scene: "onboardingStair", label: "04 — Kurulum Merdiveni" },
+  "/competitors": { scene: "competitorRadar", label: "05 — Rakip Radarı" },
+  "/actions": { scene: "layeredEngines", label: "06 — Katmanlı Motorlar" },
 };
 
-const REEL_ROUTES = new Set(["/", "/neden-gauge"]);
-
-function themeFor(pathname: string) {
-  if (ROUTE_THEME[pathname]) return ROUTE_THEME[pathname];
-  const match = Object.keys(ROUTE_THEME)
+function sceneFor(pathname: string) {
+  if (ROUTE_SCENE[pathname]) return ROUTE_SCENE[pathname];
+  const match = Object.keys(ROUTE_SCENE)
     .filter((key) => key !== "/")
     .find((key) => pathname.startsWith(key));
-  return match ? ROUTE_THEME[match] : ROUTE_THEME["/"];
+  return match ? ROUTE_SCENE[match] : ROUTE_SCENE["/"];
 }
 
 export function SiteBackground() {
-  const pathname = usePathname();
-  const path = pathname ?? "/";
-  const theme = themeFor(path);
-  const useReel = REEL_ROUTES.has(path);
+  const pathname = usePathname() ?? "/";
+  const { scene, label } = sceneFor(pathname);
 
   return (
     <>
-      {useReel ? (
-        <GaugeReelBackground />
-      ) : (
-        <GaugeBackground paletteShift={theme.paletteShift} intensity={theme.intensity} />
-      )}
+      <GaugeSceneBackground scene={scene} />
 
-      {/*
-        okunabilirlik için vinyet katmanı — reel'in kendi sahne içeriği (kelimeler, şekiller)
-        zaman zaman öne çıktığında gerçek sayfa metniyle çakışmasın diye merkez de dahil
-        hiçbir nokta tam saydam bırakılmıyor.
-      */}
+      {/* okunabilirlik vinyeti — sahne parlak olduğunda metin kontrastını korur */}
       <div
         className="pointer-events-none fixed inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(120% 90% at 50% 40%, rgba(7,7,12,.38) 0%, rgba(7,7,12,.6) 55%, rgba(7,7,12,.92) 100%)",
+            "radial-gradient(120% 90% at 50% 42%, rgba(7,7,12,.24) 0%, rgba(7,7,12,.52) 58%, rgba(7,7,12,.9) 100%)",
         }}
         aria-hidden="true"
       />
 
       <div
         className="gauge-scanline pointer-events-none fixed inset-x-0 top-0 z-[1] h-px opacity-50"
-        style={{
-          background: "linear-gradient(90deg, transparent, var(--gold), transparent)",
-        }}
+        style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }}
         aria-hidden="true"
       />
 
@@ -69,7 +53,7 @@ export function SiteBackground() {
         Signal · Live
       </div>
       <div className="pointer-events-none fixed bottom-[22px] right-7 z-[15] text-right font-mono text-[11px] uppercase tracking-[0.16em] text-fg/35">
-        Gauge / {theme.label}
+        Gauge / {label}
       </div>
     </>
   );
