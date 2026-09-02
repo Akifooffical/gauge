@@ -44,8 +44,10 @@ o spec'in "Varsayımlar" satırını gerçek seçimle güncelle.
 
 ## Bu klasördeki diğer dosyalar
 
+- [`STRATEGY.md`](./STRATEGY.md) — Spec 10–12'nin ("Agent-Readiness" yönü) konumlandırması,
+  gerekçesi ve dürüst riskleri. Bu üç spec'e başlamadan önce oku.
 - [`geo-grid-lokasyon-analizi.md`](./geo-grid-lokasyon-analizi.md) — Spec 05'i tamamlayan,
-  daha derin teknik tasarım dokümanı.
+  daha derin teknik tasarım dokümanı; Spec 12'nin harita kütüphanesi seçimi de burada.
 - [`maliyet-modeli.xlsx`](./maliyet-modeli.xlsx) — abonelik/tarama maliyeti girip brüt marj,
   CAC, LTV ve başabaş noktasını gördüğün Excel modeli.
 
@@ -74,8 +76,26 @@ satırını güncelle:
 | 07 | AI Trafik Atıfı (Attribution) | 3 | "AI beni anıyor" değil "AI bana X müşteri getirdi" | ❌ Yok |
 | 08 | Prompt Hacmi / Talep Zekası | 3 | İnsanlar kategorinde AI'a neyi ne sıklıkla soruyor | ❌ Yok |
 | 09 | Ücretsiz Grader Hunisi | 3 | Kartsız tek-seferlik skor → kayıt dönüşümü | ✅ Çekirdek çalışıyor — e-posta duvarı ve kalıcılık eksik |
+| 10 | Fact Guard (Doğruluk Motoru) | Yeni yön | AI'ın işletme hakkındaki olguları doğru mu söylüyor — izle, yakala, düzelt | ❌ Yok — grounded sorgu altyapısı (`askGrounded`) yeniden kullanılabilir |
+| 11 | Agent-Ready (Makine-Çağrılabilir Katman) | Yeni yön | Ajanlar seni bulup **işlem** yapabilsin — llms.txt, JSON-LD, PotentialAction, Wikidata | ❌ Yok — konsept Action Center mock'unda (`rec-1`) statik örnek olarak var |
+| 12 | Canlı Harita & Navigasyon | Yeni yön | Görünürlük ısı katmanı + harita sağlığı + navigasyon/işlem, canlı | ❌ Yok — girdileri (05, 10, 11) de henüz yok |
 
 Ek: `COMPETITOR-COMPARISON.md` — satış/yatırımcı sunumu için karşılaştırma tablosu.
+
+## İkinci yön: Agent-Readiness (Spec 10–12)
+
+Spec 01–09 rakiplerle aynı kategoride ("AI görünürlük takibi") boşlukları kapatır. Spec 10–12
+farklı bir bahis: Gauge'u o kategoriden tamamen çıkarıp **"AI/agent hazırlık katmanı"**na
+taşımak — AI seni *doğru* tanır, ajanlar seni *bulup işlem yapabilir*, görünürlük bu döngünün
+geri-besleme sinyali olur. Konumlandırma, riskler ve "neden bu yön" gerekçesi için önce
+[`STRATEGY.md`](./STRATEGY.md)'yi oku.
+
+- **Uygulama sırası:** 11 (Agent-Ready, en somut ROI) → 10 (Fact Guard, güven/retention) → 12
+  (Canlı Harita, ikisini görselleştiren katman).
+- **Önceki paketle bağ:** Spec 04 (GBP) → 10 ve 12'nin yer gerçeği kaynağı · Spec 05 (Geo-grid)
+  → 12'nin ısı verisi · Spec 03 (Action Center) → 10 ve 11'in bulgularını aksiyona çevirir.
+- **Kritik kural (Spec 11):** `PotentialAction` gerçek bir endpoint olmadan asla beyan
+  edilmez — endpoint yoksa ajan form-scraping'e düşer.
 
 ## Öncelik mantığı
 

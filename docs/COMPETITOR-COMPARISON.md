@@ -80,6 +80,15 @@ Rakiplerin standartlaştırdığı ama Gauge'da eksik/kısmi olan, satın alma k
 2. **Gelir atıfı** (Spec 07) — "AI bana X müşteri getirdi." Tüm alanın en zayıf noktası = en güçlü ayrışma fırsatı.
 3. **GBP + geo-grid** (Spec 04+05) — yerel moat'ı gerçek yapan çift; enterprise rakiplerin giremediği alan.
 
+## 6. Bu matrisin kapsamadığı bir bahis: Agent-Readiness (Spec 10–12)
+
+Yukarıdaki matris hepsinin aynı kategoride ("AI görünürlük takibi") rekabet ettiğini varsayar.
+Spec 10 (Fact Guard), 11 (Agent-Ready) ve 12 (Canlı Harita) farklı bir iddia taşıyor: Gauge'u
+o kategoriden çıkarıp bir **"AI/agent hazırlık katmanı"**na taşımak — rakiplerin hiçbiri
+(Profound dahil) bunu bu şekilde konumlandırmıyor, dolayısıyla yukarıdaki satır bazlı kıyas
+onlar için anlamlı değil. Gerekçe, riskler ve konumlandırma için bkz.
+[`STRATEGY.md`](./STRATEGY.md).
+
 ---
 
 ### Kaynak notu
