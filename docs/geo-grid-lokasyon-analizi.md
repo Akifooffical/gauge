@@ -4,6 +4,8 @@
 > görünürsün, neresinde kayboluyorsun" sorusunu cevaplayan bir grid-tabanlı lokasyon analizi
 > özelliği eklemek için teknik plan sunar. [README.md](../README.md)'deki "Sonraki adımlar"
 > listesindeki arka plan işleri (Inngest) ve arama verisi (SerpAPI) maddelerine bağlıdır.
+> Ürün/API/Prisma spec'i için bkz. [`specs/05-geo-grid.md`](./specs/05-geo-grid.md) — iki
+> doküman birbirini tamamlar.
 
 ## 1. Problem
 
