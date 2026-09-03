@@ -1,4 +1,11 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
+
+const legalLinks = [
+  { href: "/gizlilik", label: "Gizlilik Politikası" },
+  { href: "/kullanim-sartlari", label: "Kullanım Şartları" },
+  { href: "/kvkk", label: "KVKK" },
+];
 
 export function Footer() {
   return (
@@ -8,6 +15,13 @@ export function Footer() {
           <span className="h-[11px] w-[11px] rounded-full bg-signal" />
           Gauge
         </div>
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          {legalLinks.map((l) => (
+            <Link key={l.href} href={l.href} className="transition-colors hover:text-fg">
+              {l.label}
+            </Link>
+          ))}
+        </nav>
         <div className="font-mono text-xs">
           Yapay zeka seni önersin. · © 2026
         </div>

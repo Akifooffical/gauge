@@ -2,14 +2,9 @@
 
 import Link from "next/link";
 import { SiteHeader } from "@/components/marketing/site-header";
+import { ScanForm } from "@/components/free-scan/ScanForm";
 
 const words = ["Ölç.", "Gör.", "Öne geç."];
-
-const metrics = [
-  { value: "4", label: "kanal · canlı akış", color: "text-signal" },
-  { value: "‹200ms", label: "yenileme gecikmesi", color: "text-gold" },
-  { value: "%99.9", label: "çalışma süresi", color: "text-accent-3" },
-];
 
 export function GaugeHero() {
   return (
@@ -43,37 +38,35 @@ export function GaugeHero() {
             className="gauge-fade-in mt-7 max-w-[52ch] text-[19px] text-muted"
             style={{ animationDelay: "0.7s" }}
           >
-            Gauge, işletmenin tüm performans sinyallerini tek bir canlı panoda toplar — ölçersin,
-            rakiplerinle kıyaslarsın, doğru anda öne geçersin.
+            İşletme adını, şehrini ve kategorini yaz — ChatGPT, Gemini, Claude, Perplexity ve
+            Google&apos;ın seni gerçekten anıp anmadığını birkaç saniyede gör.
           </p>
 
-          <div className="gauge-fade-in mt-9 flex flex-wrap gap-3.5" style={{ animationDelay: "0.9s" }}>
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-[13px] px-[26px] py-[15px] text-[15px] font-semibold text-white shadow-[0_14px_44px_-14px_rgba(139,108,255,.8)] transition-transform hover:-translate-y-0.5"
-              style={{ background: "linear-gradient(135deg, var(--signal), #6f4ff0)" }}
-            >
-              Panoyu aç
-            </Link>
-            <a
-              href="#nasil"
-              className="inline-flex items-center gap-2 rounded-[13px] border border-line-2 bg-white/[0.04] px-[26px] py-[15px] text-[15px] font-semibold text-fg transition-colors hover:border-gold"
-            >
-              ▷ 90 saniyelik tur
-            </a>
+          <div
+            id="tarama"
+            className="gauge-fade-in mt-9 max-w-[620px] scroll-mt-28"
+            style={{ animationDelay: "0.9s" }}
+          >
+            <ScanForm />
           </div>
 
-          <div className="gauge-fade-in mt-[58px] flex flex-wrap gap-10" style={{ animationDelay: "1.1s" }}>
-            {metrics.map((m) => (
-              <div key={m.label}>
-                <div className={`font-display text-3xl font-bold tracking-[-0.02em] ${m.color}`}>
-                  {m.value}
-                </div>
-                <div className="mt-1 font-mono text-[12.5px] tracking-[0.05em] text-muted">
-                  {m.label}
-                </div>
-              </div>
-            ))}
+          <div
+            className="gauge-fade-in mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm"
+            style={{ animationDelay: "1.0s" }}
+          >
+            <a href="#nasil" className="font-semibold text-fg transition-colors hover:text-gold">
+              ▷ 90 saniyelik tur
+            </a>
+            <Link href="/dashboard" className="text-muted underline decoration-line-2 underline-offset-4 hover:text-fg">
+              Demo panosunu gör
+            </Link>
+          </div>
+
+          <div
+            className="gauge-fade-in mt-[58px] font-mono text-[12.5px] uppercase tracking-[0.1em] text-muted"
+            style={{ animationDelay: "1.1s" }}
+          >
+            ChatGPT · Gemini · Claude · Perplexity · Google — tek panoda.
           </div>
         </div>
       </section>

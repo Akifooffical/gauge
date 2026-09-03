@@ -25,6 +25,12 @@ sahibinin sağlaması gereken gerçek servis hesapları/anahtarları olmadan gü
 uygulanamaz — yarım bir auth/DB katmanı, şu an çalışan mock deneyimini bozar. Sen bu
 hesapları/anahtarları sağladığında sırayla devam edilebilir.
 
+**Ek:** [`EKSIK-GIDERME-YOL-HARITASI.md`](./EKSIK-GIDERME-YOL-HARITASI.md) — aynı temel
+boşlukları (nav/güven/yasal → backend → ölçüm motoru → ödeme → gözlemlenebilirlik) daha ince
+taneli görevlere (G1–O1) bölen ayrı bir doküman; F1/F2'nin kapsadığı her şeyi de kapsıyor,
+üstüne **G3 (istatistik kaynakları), G5 (yasal sayfalar) ve O1 (Sentry)** — önceki hiçbir
+pakette olmayan üç yeni madde — ekliyor. G1–G5 bu depoda tamamlandı.
+
 ## Nasıl kullanılır (VS Code + Claude Code)
 
 1. Bu paket zaten bu deponun `docs/` klasöründe.
@@ -64,6 +70,8 @@ o spec'in "Varsayımlar" satırını gerçek seçimle güncelle.
 ## Bu klasördeki diğer dosyalar
 
 - [`QA-REPORT.md`](./QA-REPORT.md) — sitenin fonksiyonel tarama raporu (§0'a bak).
+- [`EKSIK-GIDERME-YOL-HARITASI.md`](./EKSIK-GIDERME-YOL-HARITASI.md) — F1/F2 ile örtüşen ama
+  daha ince taneli, G1–O1 görev listesi (§0'a bak).
 - [`STRATEGY.md`](./STRATEGY.md) — Spec 10–12'nin ("Agent-Readiness" yönü) konumlandırması,
   gerekçesi ve dürüst riskleri. Bu üç spec'e başlamadan önce oku.
 - [`geo-grid-lokasyon-analizi.md`](./geo-grid-lokasyon-analizi.md) — Spec 05'i tamamlayan,

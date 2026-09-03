@@ -29,6 +29,8 @@ npm run dev
 - `/actions` — aksiyon merkezi / fix engine önerileri (mock veri)
 - `/contact` — Ajans/kurumsal iletişim formu (`RESEND_API_KEY` + `CONTACT_TO_EMAIL`
   ayarlanana kadar 503 net hata döner, bkz. "Ücretsiz tarama" bölümündeki desenin aynısı)
+- `/gizlilik`, `/kullanim-sartlari`, `/kvkk` — yasal sayfalar (**taslak** — gerçek veri
+  toplamadan/ödeme almadan önce bir hukuk danışmanına onaylat)
 
 ## Ücretsiz tarama
 
@@ -65,6 +67,9 @@ geçerken bu dosyanın yerini veritabanı sorguları alacak şekilde tasarlanmı
   spec'leri (01–12), site QA raporu + düzeltme spec'leri (F1–F5), rakip kıyası.
 - [`docs/QA-REPORT.md`](docs/QA-REPORT.md) — sitenin fonksiyonel tarama raporu, ne çalışıyor
   ne mock.
+- [`docs/EKSIK-GIDERME-YOL-HARITASI.md`](docs/EKSIK-GIDERME-YOL-HARITASI.md) — aynı boşlukları
+  daha ince taneli görevlere (G1–O1) bölen tamamlayıcı doküman; Faz 0 (G1–G5) bu depoda
+  tamamlandı.
 - [`docs/geo-grid-lokasyon-analizi.md`](docs/geo-grid-lokasyon-analizi.md) — harita/geo-grid
   lokasyon analizi özelliğinin teknik tasarımı (veri modeli, grid algoritması, sorgu stratejisi,
   rollout fazları).
