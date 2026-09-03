@@ -20,6 +20,12 @@
 > tamamen ücretsiz/kayıtsız gösteriliyor), `GraderRun` kalıcılığı (şu an sonuçlar DB'ye
 > yazılmıyor, sadece rate-limit/cache anahtarı olarak bellek/Upstash'te kısa ömürlü tutuluyor),
 > ve Spec 08'e anonim talep-verisi besleme köprüsü.
+>
+> **Rakip araştırması notu (2026):** HubSpot'un ücretsiz "AI Search Grader"ı tek bir 0-100
+> skor yerine **5 alt-skor** veriyor (sentiment, varlık kalitesi, marka tanınırlığı, share of
+> voice, pazar konumu). Bizimki tek skor + soru-bazlı liste. Faz 1'de (§Kapsam) skor
+> hesaplamayı zenginleştirirken bu 5-boyutlu modeli referans al — özellikle "sentiment" zaten
+> Spec 02'den geliyor, "share of voice" zaten `topCompetitor` ağırlıklandırmasından çıkarılabilir.
 
 ## Problem
 

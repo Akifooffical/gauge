@@ -28,7 +28,8 @@ hesapları/anahtarları sağladığında sırayla devam edilebilir.
 ## Nasıl kullanılır (VS Code + Claude Code)
 
 1. Bu paket zaten bu deponun `docs/` klasöründe.
-2. Önce yukarıdaki F1–F5 durumuna bak; sonra `ROADMAP.md` ile 01–12 spec sırasını belirle.
+2. Önce yukarıdaki F1–F5 durumuna bak; sonra `ROADMAP.md` ile 01–09 spec sırasını, aşağıdaki
+   "İkinci yön" ve "Üçüncü yön" bölümleriyle 10–14'ün sırasını belirle.
 3. Bir özelliği hayata geçirmek için ajana şunu ver:
 
    > `docs/specs/01-citation-source-intelligence.md` dosyasını oku ve "Görevler" bölümündeki checklist'i sırayla uygula. Her adımda mevcut kod tabanına uyum sağla, "Kabul Kriterleri" karşılanana kadar devam et.
@@ -98,8 +99,11 @@ satırını güncelle:
 | 10 | Fact Guard (Doğruluk Motoru) | Yeni yön | AI'ın işletme hakkındaki olguları doğru mu söylüyor — izle, yakala, düzelt | ❌ Yok — grounded sorgu altyapısı (`askGrounded`) yeniden kullanılabilir |
 | 11 | Agent-Ready (Makine-Çağrılabilir Katman) | Yeni yön | Ajanlar seni bulup **işlem** yapabilsin — llms.txt, JSON-LD, PotentialAction, Wikidata | ❌ Yok — konsept Action Center mock'unda (`rec-1`) statik örnek olarak var |
 | 12 | Canlı Harita & Navigasyon | Yeni yön | Görünürlük ısı katmanı + harita sağlığı + navigasyon/işlem, canlı | ❌ Yok — girdileri (05, 10, 11) de henüz yok |
+| 13 | MCP Sunucusu | Rakip paritesi | Gauge'un kendi verisini AI ajanlarına/IDE'lere (Claude Desktop, Cursor) açar | ❌ Yok |
+| 14 | Beyaz Etiket & Ajans Katmanı | Rakip paritesi | Ajans planının zaten vaat ettiği beyaz etiket rapor + API erişimini karşılar | ❌ Yok — plan sayfasında satılıyor, uygulaması yok |
 
-Ek: `COMPETITOR-COMPARISON.md` — satış/yatırımcı sunumu için karşılaştırma tablosu.
+Ek: `COMPETITOR-COMPARISON.md` — satış/yatırımcı sunumu için karşılaştırma tablosu (§5a'da
+13/14'ü tetikleyen 2026 rakip araştırması var).
 
 ## İkinci yön: Agent-Readiness (Spec 10–12)
 
@@ -115,6 +119,20 @@ geri-besleme sinyali olur. Konumlandırma, riskler ve "neden bu yön" gerekçesi
   → 12'nin ısı verisi · Spec 03 (Action Center) → 10 ve 11'in bulgularını aksiyona çevirir.
 - **Kritik kural (Spec 11):** `PotentialAction` gerçek bir endpoint olmadan asla beyan
   edilmez — endpoint yoksa ajan form-scraping'e düşer.
+
+## Üçüncü yön: Rakip Paritesi (Spec 13–14)
+
+3 Eylül 2026'da yapılan bir rakip araştırması turu, mevcut 12 spec'in hiçbirinin kapsamadığı
+iki somut boşluk buldu — detay ve kaynaklar `COMPETITOR-COMPARISON.md` §5a'da:
+
+- **Spec 13 (MCP Sunucusu):** Peec AI, Otterly, Local Falcon, Rankscale artık kendi verilerini
+  AI ajanlarına/IDE'lere MCP üzerinden açıyor; bu kategori standardı haline geldi.
+- **Spec 14 (Beyaz Etiket & Ajans Katmanı):** `pricing.tsx`'teki Ajans planı zaten "Beyaz
+  etiket raporlar" + "API erişimi" vaat ediyor ama hiç tasarlanmamış — Ayzeo ve Local
+  Dominator'ın gerçekten sattığı bir şeyi Gauge sadece fiyat sayfasında listeliyor.
+
+İkisi de F3'ün (auth + çok-kiracılı DB) üzerine oturur, dolayısıyla F3'ten önce
+uygulanamaz — sıra: F3 → (11/10/12 veya 01–09, öncelik tercihine göre) → 13/14.
 
 ## Öncelik mantığı
 

@@ -2,6 +2,14 @@
 
 > **Faz:** 2 · **Etki:** Çok yüksek · **Maliyet:** Yüksek
 > **Varsayımlar:** Google Cloud projesi + Business Profile API erişim onayı (başvuru gerektirir, önceden başlat).
+> **Rakip araştırması notu (2026):** Local Falcon artık en ucuz katmanında bile **otomatik
+> yorum yanıtı** (AI'ın yorum metnini okuyup uygun bir cevap taslağı üretmesi) bundle'lıyor —
+> bu spec'teki writeback mekaniği ("yorum yanıtı" alanı, §Uygulama mantığı/Writeback, kabul
+> kriteri "en az ... yorum yanıtı için çalışıyor") zaten bunun ALTYAPISINI kapsıyor, ama
+> yanıt METNİNİN otomatik/LLM ile üretilmesi ayrıca belirtilmemişti. Görev 7'ye
+> ("Writeback servisi + onay + log") bir alt-adım ekle: yorum metni + puanından LLM ile bir
+> yanıt taslağı üret, owner onayladıktan sonra yaz — manuel yazma yerine varsayılan akış bu
+> olsun.
 
 ## Problem
 
