@@ -64,8 +64,28 @@ const providers: Record<string, GroundedProvider> = {
   perplexity: askPerplexity,
 };
 
+// Sağlayıcı başına "API anahtarı tanımlı mı" kontrolü — askGrounded çağrılmadan,
+// taramaya hiç başlamadan önce net bir hata dönebilmek için.
+const providerConfigured: Record<string, () => boolean> = {
+  perplexity: () => Boolean(process.env.PERPLEXITY_API_KEY),
+};
+
+function getProviderName(): string {
+  return process.env.FREE_SCAN_PROVIDER?.trim() || "perplexity";
+}
+
+/**
+ * Seçili sağlayıcının anahtarı tanımlı mı — route.ts, taramaya başlamadan önce bunu
+ * kontrol edip anahtar yoksa kullanıcıya "0 puan" gibi yanıltıcı bir sonuç yerine
+ * net bir yapılandırma hatası döner.
+ */
+export function isProviderConfigured(): boolean {
+  const check = providerConfigured[getProviderName()];
+  return check ? check() : false;
+}
+
 function getProvider(): GroundedProvider {
-  const name = process.env.FREE_SCAN_PROVIDER?.trim() || "perplexity";
+  const name = getProviderName();
   const provider = providers[name];
   if (!provider) {
     throw new Error(`Bilinmeyen free-scan sağlayıcısı: ${name}`);

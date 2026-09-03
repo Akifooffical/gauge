@@ -15,7 +15,8 @@ const plans = [
       "Temel görünürlük skoru",
       "3 rakip takibi",
     ],
-    cta: "Başla",
+    cta: "Ücretsiz dene",
+    href: "/onboarding",
   },
   {
     name: "Profesyonel · popüler",
@@ -28,7 +29,8 @@ const plans = [
       "Rakip radarı + kaynak haritası",
       "Aksiyon merkezi & içerik üretici",
     ],
-    cta: "Başla",
+    cta: "Ücretsiz dene",
+    href: "/onboarding",
   },
   {
     name: "Ajans / Çok-lokasyon",
@@ -42,6 +44,7 @@ const plans = [
       "Öncelikli destek",
     ],
     cta: "İletişime geç",
+    href: "/contact",
   },
 ];
 
@@ -86,7 +89,7 @@ export function Pricing() {
                 ))}
               </ul>
               <ButtonLink
-                href="/onboarding"
+                href={plan.href}
                 variant={plan.popular ? "primary" : "ghost"}
                 className="mt-auto justify-center"
               >

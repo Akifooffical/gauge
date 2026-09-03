@@ -7,10 +7,28 @@ yazıldı.
 
 > Canlı ürün: https://gauge-seven-tau.vercel.app · Repo: bu depo (`Akifooffical/gauge`).
 
+## 0. Önce: sitenin gerçekten çalışır durumda olması (F1–F5)
+
+Özellik eklemeden önce **temel doğru mu** sorusu var — [`QA-REPORT.md`](./QA-REPORT.md)
+sitenin fonksiyonel taramasını, `docs/specs/F1-F5-*.md` de düzeltme adımlarını içeriyor:
+
+| # | Spec | Öncelik | Durum |
+|---|------|---------|-------|
+| F1 | Deployment erişimi + grader anahtarı | P0 | ✅ Kod tarafı tamam — `PERPLEXITY_API_KEY`'i Vercel'e eklemen kalıyor |
+| F2 | Nav/buton düzeltmeleri | P1 | ✅ Tamamlandı (7/8 görev; kalan tek madde F3'e bağlı) |
+| F3 | Kalıcılık & kimlik (Supabase) | P2 | ⛔ Gerçek Supabase projesi/anahtarları bekliyor |
+| F4 | Gerçek veri pipeline (çok-sağlayıcılı tarama) | P3 | ⛔ F3'e bağımlı |
+| F5 | Ödeme (Stripe) | P4 | ⛔ F3'e bağımlı + gerçek Stripe hesabı bekliyor |
+
+F1/F2 bu depoda kod tarafıyla tamamlandı (detay her spec'in "Mevcut durum" notunda). F3–F5,
+sahibinin sağlaması gereken gerçek servis hesapları/anahtarları olmadan güvenle
+uygulanamaz — yarım bir auth/DB katmanı, şu an çalışan mock deneyimini bozar. Sen bu
+hesapları/anahtarları sağladığında sırayla devam edilebilir.
+
 ## Nasıl kullanılır (VS Code + Claude Code)
 
 1. Bu paket zaten bu deponun `docs/` klasöründe.
-2. `ROADMAP.md` ile sırayı belirle.
+2. Önce yukarıdaki F1–F5 durumuna bak; sonra `ROADMAP.md` ile 01–12 spec sırasını belirle.
 3. Bir özelliği hayata geçirmek için ajana şunu ver:
 
    > `docs/specs/01-citation-source-intelligence.md` dosyasını oku ve "Görevler" bölümündeki checklist'i sırayla uygula. Her adımda mevcut kod tabanına uyum sağla, "Kabul Kriterleri" karşılanana kadar devam et.
@@ -44,6 +62,7 @@ o spec'in "Varsayımlar" satırını gerçek seçimle güncelle.
 
 ## Bu klasördeki diğer dosyalar
 
+- [`QA-REPORT.md`](./QA-REPORT.md) — sitenin fonksiyonel tarama raporu (§0'a bak).
 - [`STRATEGY.md`](./STRATEGY.md) — Spec 10–12'nin ("Agent-Readiness" yönü) konumlandırması,
   gerekçesi ve dürüst riskleri. Bu üç spec'e başlamadan önce oku.
 - [`geo-grid-lokasyon-analizi.md`](./geo-grid-lokasyon-analizi.md) — Spec 05'i tamamlayan,

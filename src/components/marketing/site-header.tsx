@@ -6,7 +6,7 @@ const navLinks = [
   { href: "/#nasil", label: "Ürün" },
   { href: "/neden-gauge", label: "Neden Gauge" },
   { href: "/#fiyat", label: "Fiyatlar" },
-  { href: "https://github.com/Akifooffical/gauge", label: "Dokümanlar", external: true },
+  { href: "/dashboard", label: "Panoya git" },
 ];
 
 export function SiteHeader() {
@@ -28,23 +28,11 @@ export function SiteHeader() {
         </Link>
 
         <div className="hidden gap-7 text-sm text-muted md:flex">
-          {navLinks.map((l) =>
-            l.external ? (
-              <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-fg"
-              >
-                {l.label}
-              </a>
-            ) : (
-              <Link key={l.label} href={l.href} className="transition-colors hover:text-fg">
-                {l.label}
-              </Link>
-            )
-          )}
+          {navLinks.map((l) => (
+            <Link key={l.label} href={l.href} className="transition-colors hover:text-fg">
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         <Link

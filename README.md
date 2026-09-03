@@ -27,6 +27,8 @@ npm run dev
 - `/dashboard` — görünürlük skoru, trend, kanal kırılımı, ısı haritası (mock veri)
 - `/competitors` — rakip karşılaştırması ve kaynak haritası (mock veri)
 - `/actions` — aksiyon merkezi / fix engine önerileri (mock veri)
+- `/contact` — Ajans/kurumsal iletişim formu (`RESEND_API_KEY` + `CONTACT_TO_EMAIL`
+  ayarlanana kadar 503 net hata döner, bkz. "Ücretsiz tarama" bölümündeki desenin aynısı)
 
 ## Ücretsiz tarama
 
@@ -51,14 +53,18 @@ Bu MVP'yi üretime taşımak için:
 3. **Arama verisi** — SerpAPI ile Google organik/yerel/AI Overview sonuçları.
 4. **Arka plan işleri** — Inngest ile zamanlanmış tarama işleri, retry ve hız sınırı.
 5. **Ödeme** — Stripe abonelik + webhook + plan bazlı kota.
-6. **Ortam değişkenleri** — `.env.local.example` dosyasını oluşturup gerçek anahtarları
-   Vercel proje ayarlarına ekleyin.
+6. ~~**Ortam değişkenleri** — `.env.local.example` dosyasını oluşturup...~~ — tamam, repo
+   kökünde; gerçek anahtarları Vercel proje ayarlarına eklemek kalıyor.
 
 Mock veri `src/lib/mock-data.ts` dosyasında merkezi olarak tutulur; gerçek veri katmanına
 geçerken bu dosyanın yerini veritabanı sorguları alacak şekilde tasarlanmıştır.
 
 ## Dokümanlar
 
+- [`docs/README.md`](docs/README.md) — tüm `docs/` klasörünün indeksi: eksik özellik
+  spec'leri (01–12), site QA raporu + düzeltme spec'leri (F1–F5), rakip kıyası.
+- [`docs/QA-REPORT.md`](docs/QA-REPORT.md) — sitenin fonksiyonel tarama raporu, ne çalışıyor
+  ne mock.
 - [`docs/geo-grid-lokasyon-analizi.md`](docs/geo-grid-lokasyon-analizi.md) — harita/geo-grid
   lokasyon analizi özelliğinin teknik tasarımı (veri modeli, grid algoritması, sorgu stratejisi,
   rollout fazları).

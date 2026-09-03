@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { demoBusiness } from "@/lib/mock-data";
 import {
+  ArrowLeft,
   LayoutDashboard,
   ListChecks,
   Radar,
@@ -53,7 +54,15 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto rounded-lg border border-line bg-surface p-3.5">
+      <Link
+        href="/"
+        className="mt-auto mb-3 flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-white/5 hover:text-fg"
+      >
+        <ArrowLeft size={16} />
+        Siteye dön
+      </Link>
+
+      <div className="rounded-lg border border-line bg-surface p-3.5">
         <div className="text-sm font-semibold text-fg">{demoBusiness.name}</div>
         <div className="mt-1 text-xs text-muted">{demoBusiness.location}</div>
         <div className="mt-2.5 inline-flex rounded-full bg-gold/15 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-gold">

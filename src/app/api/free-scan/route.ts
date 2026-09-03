@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateQueries } from "@/lib/free-scan/generateQueries";
-import { askGrounded, type GroundedAnswer } from "@/lib/free-scan/provider";
+import { askGrounded, isProviderConfigured, type GroundedAnswer } from "@/lib/free-scan/provider";
 import { extract } from "@/lib/free-scan/extract";
 import { computeScore } from "@/lib/free-scan/score";
 import {
@@ -69,6 +69,17 @@ function getClientIp(req: NextRequest): string {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!isProviderConfigured()) {
+      console.error("[free-scan] Sağlayıcı yapılandırılmamış (API anahtarı eksik).");
+      return NextResponse.json(
+        {
+          error:
+            "Ücretsiz tarama şu anda yapılandırılmamış (sağlayıcı API anahtarı eksik). Site sahibiyle iletişime geç.",
+        },
+        { status: 503 }
+      );
+    }
+
     const body = (await req.json().catch(() => null)) as FreeScanBody | null;
     if (!body) {
       return NextResponse.json({ error: "Geçersiz istek gövdesi." }, { status: 400 });
